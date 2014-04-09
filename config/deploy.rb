@@ -1,7 +1,7 @@
 set :application, '2015citoyens'
 set :repo_url,    'git@github.com:MichaelHoste/2015citoyens.git'
 set :deploy_to,   "/home/deploy/apps/2015citoyens"
-set :linked_files, %w{config/database.yml config/initializers/facebook.rb config/initializers/errbit.rb, config/newrelic.yml}
+set :linked_files, %w{config/database.yml config/initializers/facebook.rb config/initializers/errbit.rb config/newrelic.yml}
 set :linked_dirs,  %w{bin log tmp vendor/bundle public/pictures}
 
 set :rbenv_type, 'user'
