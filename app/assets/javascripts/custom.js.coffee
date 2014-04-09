@@ -15,6 +15,12 @@ $ ->
       link:    'http://2015citoyens.be',
     )
 
+  $('.action1 .content .fb-connect').on('click', ->
+    $(this).hide()
+    $(this).next().show()
+    return true
+  )
+
   $('.submit').on('click', ->
     $('form').submit()
     return false

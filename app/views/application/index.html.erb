@@ -41,7 +41,11 @@
         </div>
         <div class="content">
           <% if not current_user %>
-            <%= link_to image_tag('fb-profile.png'), '/auth/facebook' %>
+            <%= link_to image_tag('fb-profile.png'), '/auth/facebook', :class => 'fb-connect' %>
+            <span class="loading">
+              Récupération de la photo en cours.<br/>
+              <%= image_tag 'loading.gif' %>
+            </span>
           <% else %>
             <%= image_tag(current_user.picture.big) %><br/>
             <%= link_to "Supprimer", "/signout" %>
