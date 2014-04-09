@@ -60,5 +60,6 @@ ActiveRecord::Schema.define(version: 20140408193620) do
 
   add_index "users", ["f_id"], name: "index_users_on_f_id", unique: true, using: :btree
   add_index "users", ["published"], name: "index_users_on_published", using: :btree
+  add_index "users", ["x", "y"], name: "index_users_on_x_and_y", using: :btree
 
 end

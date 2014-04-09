@@ -1,4 +1,3 @@
-
 class User < ActiveRecord::Base
 
   # Attached files
@@ -20,11 +19,11 @@ class User < ActiveRecord::Base
   def self.from_omniauth(auth)
     User.where(:f_id => auth.uid).first_or_initialize.tap do |user|
       user.f_id           = auth.uid
-      user.name           = auth.info.name              if auth.info.name
-      user.email          = auth.info.email             if auth.info.email
-      user.gender         = auth.extra.raw_info.gender  if auth.extra.raw_info.gender
-      user.locale         = auth.extra.raw_info.locale  if auth.extra.raw_info.locale
-      user.picture_link   = auth.info.image             if auth.info.image
+      user.name           = auth.info.name                    if auth.info.name
+      user.email          = auth.info.email                   if auth.info.email
+      user.gender         = auth.extra.raw_info.gender        if auth.extra.raw_info.gender
+      user.locale         = auth.extra.raw_info.locale        if auth.extra.raw_info.locale
+      user.picture_link   = auth.info.image                   if auth.info.image
       user.f_token        = auth.credentials.token
       user.f_expires      = auth.credentials.expires
       user.f_expires_at   = Time.at(auth.credentials.expires_at)
