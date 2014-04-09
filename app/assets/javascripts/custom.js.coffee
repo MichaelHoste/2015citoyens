@@ -3,11 +3,17 @@ $ ->
     positions = person.attr('id').split('-')
     y = parseInt(positions[1])
     if y < 25
-      person.removeClass('right')
-      person.addClass('left')
+      $('#person').removeClass('left')
+      $('#person').addClass('right')
     else
-      person.removeClass('left')
-      person.addClass('right')
+      $('#person').removeClass('right')
+      $('#person').addClass('left')
+
+  trigger_facebook_share = ->
+    FB.ui(
+      method:  'feed',
+      link:    'http://2015citoyens.be',
+    )
 
   $('.submit').on('click', ->
     $('form').submit()
@@ -20,6 +26,7 @@ $ ->
 
     if $(this).data('picture') != ""
       align_person($(this))
+      $('#person .description .content').html($(this).data('text'))
       $('#person').show()
   )
 
@@ -27,3 +34,10 @@ $ ->
     $(this).css('border', '0px')
     $('#person').hide()
   )
+
+  $(".fbshare").on('click', ->
+    trigger_facebook_share()
+  )
+
+  if $("#trigger-facebook").length
+    setTimeout(trigger_facebook_share, 2000)

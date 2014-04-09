@@ -1,3 +1,11 @@
+<div class="facebook">
+  <div class="fb-like" data-href="http://2015citoyens.be" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+</div>
+
+<div class="twitter">
+  <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://2015citoyens.be" data-lang="en" data-hashtags="mons2015">Tweeter</a>
+</div>
+
 <h1>2015 Citoyens</h1>
 <p class="lead">
   Ce projet <em>non-officiel</em> a pour but artistique de créer une <strong>mosaique de 2015 citoyens concernés par Mons 2015</strong><br/>
@@ -6,8 +14,14 @@
 
 <% if current_user and current_user.published %>
   <div class="published">
-    Vous êtes sur la mosaique.<br/>
-    <%= link_to image_tag('fb-share.png'), '#' %>
+    <% if flash[:notice] %>
+      <%= flash[:notice] %>
+      <div id="trigger-facebook"></div>
+    <% else %>
+      Vous êtes sur la mosaique.
+    <% end %>
+    <br/>
+    <%= link_to image_tag('fb-share.png'), '#', :class => 'fbshare' %>
   </div>
 <% end %>
 
@@ -45,7 +59,7 @@
         </div>
         <div class="content">
           <% if current_user %>
-            <textarea name="description" placeholder="Mons 2015, pour moi, c'est..."></textarea>
+            <textarea name="description" maxlength="200" placeholder="Mons 2015, pour moi, c'est..."></textarea>
           <% else %>
             <textarea class="disabled" disabled placeholder="en attente d'une photo"></textarea>
           <% end %>
@@ -94,7 +108,9 @@
   <div id="person" class="left">
     <img src=""/>
     <div class="description">
-      « blablbala »
+      <span class="guillemet">«</span>
+      <span class="content"></span>
+      <span class="guillemet">»</span>
     </div>
   </div>
 </div>

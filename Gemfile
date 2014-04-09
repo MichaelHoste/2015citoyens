@@ -30,7 +30,6 @@ gem 'puma'
 gem 'airbrake'
 gem 'therubyracer'
 
-
 # Development tools
 group :development do
   gem 'capistrano'

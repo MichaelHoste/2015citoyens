@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Une mosaique de 2015 citoyens concernés par Mons 2015">
+    <meta name="author" content="80LIMIT / Michaël Hoste">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title>Mons 2015 Mozaic</title>
+    <title>2015 Citoyens | Une mosaique de 2015 citoyens concernés par Mons 2015</title>
 
     <%= stylesheet_link_tag    "application", media: "all" %>
     <%= javascript_include_tag "application" %>
@@ -20,16 +20,20 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <meta property="og:url"         content="http://2015citoyens.be" />
+    <meta property="og:title"       content="2015 Citoyens" />
+    <meta property="og:description" content="Une mosaique de 2015 citoyens concernés par Mons 2015" />
+    <meta property="og:image"       content="http://2015citoyens.be/mozaic.jpg" />
   </head>
 
   <body>
-    <%# image_tag 'logo.png' %>
-    <div class="container">
+    <%= render 'shared/facebook' %>
 
+    <div class="container">
       <div class="starter-template">
         <%= yield %>
       </div>
-
     </div>
   </body>
 </html>

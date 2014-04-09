@@ -3,8 +3,21 @@ body {
 }
 
 .starter-template {
+  position:relative;
   padding: 40px 15px;
   text-align: center;
+}
+
+.facebook {
+  position:absolute;
+  right:0px;
+  top:0px;
+}
+
+.twitter {
+  position: absolute;
+  right: -22px;
+  top: 26px;
 }
 
 .published {
@@ -79,9 +92,9 @@ body {
   position:absolute;
   z-index: 2;
   background-color:white;
-  height: 400px;
+  height: 410px;
   width: 300px;
-  top: 200px;
+  top: 205px;
   box-shadow: 0px 0px 30px #BBB;
   -moz-box-shadow: 0px 0px 30px #BBB;
   -webkit-box-shadow: 0px 0px 30px #BBB;
@@ -91,7 +104,13 @@ body {
   }
 
   &.right {
-    left: 70px;
+    right: 70px;
+  }
+
+  .description {
+    height: 110px;
+    overflow: auto;
+    padding-top: 5px;
   }
 }
 
