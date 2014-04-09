@@ -111,6 +111,18 @@ body {
     right: 70px;
   }
 
+  &.top {
+    top: 70px;
+  }
+
+  &.center {
+    top: 205px;
+  }
+
+  &.bottom {
+    bottom: 70px;
+  }
+
   .description {
     height: 110px;
     overflow: auto;

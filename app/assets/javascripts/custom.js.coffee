@@ -1,6 +1,7 @@
 $ ->
   align_person = (person) ->
     positions = person.attr('id').split('-')
+    x = parseInt(positions[0])
     y = parseInt(positions[1])
     if y < 25
       $('#person').removeClass('left')
@@ -8,6 +9,19 @@ $ ->
     else
       $('#person').removeClass('right')
       $('#person').addClass('left')
+
+    if x < 12
+      $('#person').removeClass('bottom')
+      $('#person').removeClass('center')
+      $('#person').addClass('top')
+    else if x >= 12 && x < 28
+      $('#person').removeClass('bottom')
+      $('#person').removeClass('top')
+      $('#person').addClass('center')
+    else
+      $('#person').removeClass('top')
+      $('#person').removeClass('center')
+      $('#person').addClass('bottom')
 
   trigger_facebook_share = ->
     FB.ui(
