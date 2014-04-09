@@ -1,7 +1,7 @@
 set :application, '2015citoyens'
 set :repo_url,    'git@github.com:MichaelHoste/2015citoyens.git'
 set :deploy_to,   "/home/deploy/apps/2015citoyens"
-set :linked_files, %w{config/database.yml config/initializers/facebook.rb config/initializers/errbit.rb}
+set :linked_files, %w{config/database.yml config/initializers/facebook.rb config/initializers/errbit.rb, config/newrelic.yml}
 set :linked_dirs,  %w{bin log tmp vendor/bundle public/pictures}
 
 set :rbenv_type, 'user'
@@ -42,6 +42,7 @@ namespace :deploy do
       upload! "config/initializers/facebook.rb", "#{deploy_to}/shared/config/initializers/facebook.rb"
       upload! "config/initializers/errbit.rb",   "#{deploy_to}/shared/config/initializers/errbit.rb"
       upload! "config/database.yml",             "#{deploy_to}/shared/config/database.yml"
+      upload! "config/newrelic.yml",             "#{deploy_to}/shared/config/newrelic.yml"
 
       execute :sudo, "unlink /etc/nginx/sites-enabled/#{fetch(:application)};true"
       execute :sudo, "ln -s #{deploy_to}/current/config/nginx.conf /etc/nginx/sites-enabled/#{fetch(:application)};true"
