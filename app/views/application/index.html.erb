@@ -1,3 +1,5 @@
+<% remaining = 2015 - User.published.count %>
+
 <div class="facebook">
   <div class="fb-like" data-href="http://2015citoyens.be" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
 </div>
@@ -12,86 +14,96 @@
   ainsi que leur opinion sur cet événement.
 </p>
 
-<% if current_user and current_user.published %>
-  <div class="published">
-    <% if flash[:notice] %>
-      <%= flash[:notice] %>
-      <div id="trigger-facebook"></div>
-    <% else %>
-      Vous êtes sur la mosaique.
-    <% end %>
-    <br/>
-    <%= link_to image_tag('fb-share.png'), '#', :class => 'fbshare' %>
-  </div>
-<% end %>
+<% if remaining > 0 %>
+  <% if current_user and current_user.published %>
+    <div class="published">
+      <% if flash[:notice] %>
+        <%= flash[:notice] %>
+        <div id="trigger-facebook"></div>
+      <% else %>
+        Vous êtes sur la mosaique.
+      <% end %>
+      <br/>
+      <%= link_to image_tag('fb-share.png'), '#', :class => 'fbshare' %>
+    </div>
+  <% end %>
 
-<% if !current_user || !current_user.published %>
-  <div class="actions">
-    <hr/>
+  <% if !current_user || !current_user.published %>
+    <div class="actions">
+      <hr/>
 
-    <form method="post" action="/users">
-      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+      <form method="post" action="/users">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 
-      <div class="action action-1">
-        <div class="title">
-          <strong>1.</strong> Uploader votre photo
+        <div class="action action-1">
+          <div class="title">
+            <strong>1.</strong> Uploader votre photo
+          </div>
+          <div class="sub-title">
+            Connectez-vous avec Facebook et nous prendrons votre photo de profil (nous ne demandons pas de permissions spéciales)
+          </div>
+          <div class="content">
+            <% if not current_user %>
+              <%= link_to image_tag('fb-profile.png'), '/auth/facebook', :class => 'fb-connect' %>
+              <span class="loading">
+                Récupération de la photo en cours.<br/>
+                <%= image_tag 'loading.gif' %>
+              </span>
+            <% else %>
+              <%= image_tag(current_user.picture.big) %><br/>
+              <%= link_to "Supprimer", "/signout" %>
+            <% end %>
+          </div>
         </div>
-        <div class="sub-title">
-          Connectez-vous avec Facebook et nous prendrons votre photo de profil (nous ne demandons pas de permissions spéciales)
+
+        <hr/>
+
+        <div class="action action-1">
+          <div class="title">
+            <strong>2.</strong> Votre message personnel
+          </div>
+          <div class="sub-title">
+          </div>
+          <div class="content">
+            <% if current_user %>
+              <textarea class="input-description" name="description" maxlength="200" placeholder="Mons 2015, pour moi, c'est..."></textarea>
+            <% else %>
+              <textarea class="input-description disabled" disabled placeholder="en attente d'une photo"></textarea>
+            <% end %>
+          </div>
         </div>
-        <div class="content">
-          <% if not current_user %>
-            <%= link_to image_tag('fb-profile.png'), '/auth/facebook', :class => 'fb-connect' %>
+
+        <hr/>
+
+        <div class="action action-1">
+          <div class="title">
+            <strong>3.</strong> Publier
+          </div>
+          <div class="sub-title">
+            En cliquant sur "valider", je comprends que ma photo et mon commentaire seront ajoutés à la mosaique.
+          </div>
+          <div class="content">
+            <%= link_to image_tag('publish.png'), '#', :class => "submit" %>
             <span class="loading">
-              Récupération de la photo en cours.<br/>
+              Création de la mosaique en cours.<br/>
               <%= image_tag 'loading.gif' %>
             </span>
-          <% else %>
-            <%= image_tag(current_user.picture.big) %><br/>
-            <%= link_to "Supprimer", "/signout" %>
-          <% end %>
+          </div>
         </div>
-      </div>
+      </form>
+    </div>
 
-      <hr/>
-
-      <div class="action action-1">
-        <div class="title">
-          <strong>2.</strong> Votre message personnel
-        </div>
-        <div class="sub-title">
-        </div>
-        <div class="content">
-          <% if current_user %>
-            <textarea name="description" maxlength="200" placeholder="Mons 2015, pour moi, c'est..."></textarea>
-          <% else %>
-            <textarea class="disabled" disabled placeholder="en attente d'une photo"></textarea>
-          <% end %>
-        </div>
-      </div>
-
-      <hr/>
-
-      <div class="action action-1">
-        <div class="title">
-          <strong>3.</strong> Publier
-        </div>
-        <div class="sub-title">
-          En cliquant sur "valider", je comprends que ma photo et mon commentaire seront ajoutés à la mosaique.
-        </div>
-        <div class="content">
-          <%= link_to image_tag('publish.png'), '#', :class => "submit" %>
-        </div>
-      </div>
-    </form>
-  </div>
-
-  <br/><br/><br/>
+    <br/><br/><br/>
+  <% end %>
 <% end %>
 
 <h1>La mosaique</h1>
 <p class="lead">
-  Il ne reste que <strong><%= 2015 - User.published.count %></strong> places.
+  <% if remaining == 0 %>
+    La mosaique est complète. Il n'est plus possible de s'inscrire.
+  <% else %>
+    Il ne reste que <strong><%= remaining %></strong> places.
+  <% end %>
 </p>
 
 <!-- grid coordinates are inverted because of float:left -->
@@ -116,7 +128,13 @@
   </div>
 </div>
 
+<div id="hint">
+  Survolez la mosaique avec votre curseur pour lire les opinions des citoyens.
+</div>
+
 <div id="copyright">
   Projet proposé par<br/>
-  <%= link_to(image_tag('80limit.png'), 'http://80limit.com') %>
+  <%= link_to(image_tag('80limit.png', :alt => '80LIMIT', :title => '80LIMIT'), 'http://80limit.com') %>
+  &nbsp;&nbsp;
+  <%= link_to(image_tag('creativemonkeys.png', :alt => 'Creative Monkeys', :title => 'Creative Monkeys'), 'http://creativemonkeys.eu') %>
 </div>

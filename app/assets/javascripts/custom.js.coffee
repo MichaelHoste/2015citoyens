@@ -11,17 +11,25 @@ $ ->
 
   trigger_facebook_share = ->
     FB.ui(
-      method:  'feed',
-      link:    'http://2015citoyens.be',
+      method:      'feed',
+      link:        'http://2015citoyens.be',
+      description: "Je fais partie d'une mosaique de 2015 citoyens concernés par Mons 2015, rejoins-moi et donne ton avis !"
     )
 
-  $('.action1 .content .fb-connect').on('click', ->
+  $('.action-1 .content .fb-connect').on('click', ->
     $(this).hide()
     $(this).next().show()
     return true
   )
 
   $('.submit').on('click', ->
+    if $('.input-description').val() == '' || $('.fb-connect').length
+      alert("Vous devez uploader votre photo et ajouter un message personnel.")
+      return false
+
+    $(this).hide()
+    $(this).next().show()
+
     $('form').submit()
     return false
   )
