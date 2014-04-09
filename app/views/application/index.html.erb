@@ -97,10 +97,7 @@
     <% 41.times do |j| %>
       <% 50.times do |i| %>
         <% user = User.where(:x => j, :y => i).try(:first) %>
-        <div id="<%= j %>-<%= i %>"
-             data-text="<%= user.description    if user %>"
-             data-picture="<%= user.picture.big if user %>">
-        </div>
+        <div id="<%= j %>-<%= i %>" data-text="<%= user.description if user %>" data-picture="<%= user.picture.big if user %>"></div>
       <% end %>
     <% end %>
   </div>

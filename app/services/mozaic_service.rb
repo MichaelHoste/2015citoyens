@@ -12,7 +12,8 @@ module MozaicService
     end
 
     `cd tmp && montage *.jpg -tile 50x41 -geometry 20x20+0+0 mozaic.jpg`
-    `cp tmp/mozaic.jpg public/pictures/mozaic.jpg`
+    `composite -blend 20 app/assets/images/mons2015.jpg tmp/mozaic.jpg tmp/mozaic2.jpg`
+    `cp tmp/mozaic2.jpg public/pictures/mozaic.jpg`
     `rm tmp/*.jpg`
   end
 end
