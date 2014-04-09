@@ -12,7 +12,7 @@ module MozaicService
     end
 
     `cd tmp && montage *.jpg -tile 50x41 -geometry 20x20+0+0 mozaic.jpg`
-    `cp tmp/mozaic.jpg public/mozaic.jpg`
+    `cp tmp/mozaic.jpg public/pictures/mozaic.jpg`
     `rm tmp/*.jpg`
   end
 end
