@@ -58,8 +58,9 @@ class User < ActiveRecord::Base
         (0..49).to_a.each do |j|
           if User.where(:x => i, :y => j).empty?
             if target_position == 0
-              self.x = i
-              self.y = j
+              self.x         = i
+              self.y         = j
+              self.position  = x*50+y
               self.published = true
               self.save!
               return true

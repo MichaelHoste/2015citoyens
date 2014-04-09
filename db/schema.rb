@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20140408193620) do
     t.datetime "f_expires_at"
     t.integer  "x"
     t.integer  "y"
+    t.integer  "position"
     t.text     "description"
     t.boolean  "published",                default: false
     t.datetime "created_at"

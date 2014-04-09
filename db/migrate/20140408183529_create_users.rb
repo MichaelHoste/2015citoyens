@@ -24,6 +24,7 @@ class CreateUsers < ActiveRecord::Migration
 
       t.integer  :x
       t.integer  :y
+      t.integer  :position
       t.text     :description
       t.boolean  :published, :default => false
 

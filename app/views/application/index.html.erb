@@ -110,10 +110,17 @@
 <div id="mozaic">
   <img src="/pictures/mozaic.jpg">
   <div id="squares">
+    <% users = User.published.order('position ASC').all %>
+    <% pos = 0 %>
     <% 41.times do |j| %>
       <% 50.times do |i| %>
-        <% user = User.where(:x => j, :y => i).try(:first) %>
-        <div id="<%= j %>-<%= i %>" data-text="<%= user.description if user %>" data-picture="<%= user.picture.big if user %>"></div>
+        <% user = users[pos] %>
+        <% if user and user.x == j and user.y == i %>
+          <div id="<%= j %>-<%= i %>" data-text="<%= user.description if user %>" data-picture="<%= user.picture.big if user %>"></div>
+          <% pos = pos + 1 %>
+        <% else %>
+          <div id="<%= j %>-<%= i %>" data-text="" data-picture=""></div>
+        <% end %>
       <% end %>
     <% end %>
   </div>
