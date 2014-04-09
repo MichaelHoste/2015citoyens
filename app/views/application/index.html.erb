@@ -10,8 +10,8 @@
 
 <h1>2015 Citoyens</h1>
 <p class="lead">
-  Ce projet <em>non-officiel</em> a pour but artistique de créer une <strong>mosaique de 2015 citoyens concernés par Mons 2015</strong><br/>
-  ainsi que leur opinion sur cet événement.
+  Ce projet <em>non-officiel</em> a pour but artistique de créer une <strong>mosaïque de 2015 citoyens concernés par <a href="http://mons2015.eu">Mons 2015</a></strong><br/>
+  ainsi que leur point de vue sur cet événement.
 </p>
 
 <% if remaining > 0 %>
@@ -21,7 +21,7 @@
         <%= flash[:notice] %>
         <div id="trigger-facebook"></div>
       <% else %>
-        Vous êtes sur la mosaique.
+        Vous êtes sur la mosaïque.
       <% end %>
       <br/>
       <%= link_to image_tag('fb-share.png'), '#', :class => 'fbshare' %>
@@ -80,12 +80,12 @@
             <strong>3.</strong> Publier
           </div>
           <div class="sub-title">
-            En cliquant sur "publier", je comprends que ma photo et mon commentaire seront ajoutés à la mosaique.
+            En cliquant sur "publier", je comprends que ma photo et mon commentaire seront ajoutés à la mosaïque.
           </div>
           <div class="content">
             <%= link_to image_tag('publish.png'), '#', :class => "submit" %>
             <span class="loading">
-              Création de la mosaique en cours.<br/>
+              Création de la mosaïque en cours.<br/>
               <%= image_tag 'loading.gif' %>
             </span>
           </div>
@@ -97,10 +97,10 @@
   <% end %>
 <% end %>
 
-<h1>La mosaique</h1>
+<h1>La mosaïque</h1>
 <p class="lead">
   <% if remaining == 0 %>
-    La mosaique est complète. Il n'est plus possible de s'inscrire.
+    La mosaïque est complète. Il n'est plus possible de s'inscrire.
   <% else %>
     Il ne reste que <strong><%= remaining %></strong> places.
   <% end %>
@@ -136,7 +136,7 @@
 </div>
 
 <div id="hint">
-  Survolez la mosaique avec votre curseur pour lire les opinions des citoyens.
+  Survolez la mosaïque avec votre curseur pour lire les avis des citoyens sur Mons 2015.
 </div>
 
 <div id="copyright">
