@@ -118,7 +118,7 @@ $ ->
   if $("#trigger-facebook").length
     setTimeout(trigger_facebook_share, 2000)
 
-  setInterval(hide_person_div, 1000)
+  setInterval(hide_person_div, 1007)
   window.random_timeout = setTimeout(random_click, 1000)
 
   $('#squares').on('mouseenter', ->

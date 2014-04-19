@@ -104,17 +104,22 @@ p.lead.remaining {
   position:relative;
   margin:auto;
   margin-top: 24px;
-  height:820px;
-  width:1000px;
   background-color:black;
+  height:615px;
+  width:750px;
+
+  img {
+    height:615px;
+    width:750px;
+  }
 
   #squares {
     position:absolute;
     top: 0px;
 
     div {
-      width:20px;
-      height:20px;
+      width:15px;
+      height:15px;
       float:left;
     }
   }
@@ -133,23 +138,23 @@ p.lead.remaining {
   @include transition(opacity, 0.2s, ease-in);
 
   &.left {
-    left: 70px;
+    left: 30px;
   }
 
   &.right {
-    right: 70px;
+    right: 30px;
   }
 
   &.top {
-    top: 70px;
+    top: 105px;
   }
 
   &.center {
-    top: 205px;
+    top: 105px;
   }
 
   &.bottom {
-    top: 330px;
+    top: 105px;
   }
 
   img {
@@ -162,6 +167,7 @@ p.lead.remaining {
     overflow: auto;
     padding: 3px;
     padding-top: 5px;
+    color: #333333;
   }
 }
 
