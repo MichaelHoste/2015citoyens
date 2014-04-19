@@ -32,6 +32,8 @@ trigger_facebook_share = ->
 trigger_subscription = ->
   $('.subscription-link').hide()
   $('.subscription').show()
+  if not $('.fbshare').length
+    $('p.lead.remaining').hide()
 
 bind_fb_connect = ->
   $('.action-1 .content .fb-connect').on('click', ->

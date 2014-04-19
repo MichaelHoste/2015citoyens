@@ -99,23 +99,23 @@
       </form>
     </div>
 
-    <br/><br/><br/>
+    <br/>
   <% end %>
 </div>
-
-<p class="lead">
-  <% if remaining == 0 %>
-    La mosaïque est complète. Il n'est plus possible de s'inscrire.
-  <% else %>
-    Il ne reste que <strong><%= remaining %></strong> places.
-  <% end %>
-</p>
 
 <% if remaining > 0 %>
   <div class="subscription-link">
     <%= link_to image_tag('join.png'), '#', :class => 'join' %>
   </div>
 <% end %>
+
+<p class="lead remaining">
+  <% if remaining == 0 %>
+    La mosaïque est complète. Il n'est plus possible de s'inscrire.
+  <% else %>
+    Il ne reste que <strong><%= remaining %></strong> places.
+  <% end %>
+</p>
 
 <!-- grid coordinates are inverted because of float:left -->
 <div id="mozaic">

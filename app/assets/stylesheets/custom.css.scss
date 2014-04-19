@@ -42,6 +42,10 @@ p.lead {
   }
 }
 
+p.lead.remaining {
+  font-size: 14px;
+}
+
 .subscription-link {
 
 }
@@ -157,6 +161,7 @@ p.lead {
 }
 
 #hint {
+  font-size: 17px;
   margin-top: 7px;
   color: #888888;
 }
