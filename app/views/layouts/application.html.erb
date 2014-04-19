@@ -25,7 +25,7 @@
     <meta property="og:url"         content="http://2015citoyens.be" />
     <meta property="og:title"       content="2015 Citoyens" />
     <meta property="og:description" content="Une mosaïque de 2015 citoyens concernés par Mons 2015" />
-    <meta property="og:image"       content="http://2015citoyens.be/pictures/mozaic.jpg" />
+    <meta property="og:image"       content="http://2015citoyens.be/pictures/mozaic-<%= User.published.count %>.jpg" />
 
     <%= render 'shared/analytics' %>
   </head>
