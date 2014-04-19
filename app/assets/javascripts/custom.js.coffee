@@ -71,9 +71,57 @@ mouse_enter = (square) ->
     $('#person').css('zIndex', 1)
     $('#person').show().css('opacity', 1.0)
 
+    window.context.beginPath()
+
+    if $('#person').hasClass('right')
+      top_left =
+        x: square.position().left
+        y: square.position().top
+
+      bottom_left =
+        x: square.position().left
+        y: square.position().top + 15
+
+      right_person_top =
+        x: 420
+        y: 106
+
+      right_person_bottom =
+        x: 420
+        y: 514
+
+      window.context.moveTo(bottom_left.x, bottom_left.y)
+      window.context.lineTo(right_person_bottom.x, right_person_bottom.y)
+      window.context.moveTo(top_left.x, top_left.y)
+      window.context.lineTo(right_person_top.x, right_person_top.y)
+    else
+      top_right =
+        x: square.position().left + 15
+        y: square.position().top
+
+      bottom_right =
+        x: square.position().left + 15
+        y: square.position().top  + 15
+
+      left_person_top =
+        x: 330
+        y: 106
+
+      left_person_bottom =
+        x: 330
+        y: 514
+
+      window.context.moveTo(bottom_right.x, bottom_right.y)
+      window.context.lineTo(left_person_bottom.x, left_person_bottom.y)
+      window.context.moveTo(top_right.x, top_right.y)
+      window.context.lineTo(left_person_top.x, left_person_top.y)
+
+    window.context.stroke()
+
 mouse_leave = (square) ->
   square.css('border', '0px')
   $('#person').css('opacity', 0.0)
+  window.context.clearRect(0, 0, 750, 615)
 
 bind_mouse_on_picture = ->
   $('#squares div').on('mouseenter', ->
@@ -89,10 +137,6 @@ bind_join = ->
     trigger_subscription()
     false
   )
-
-hide_person_div = ->
-  if $('#person').css('opacity') == '0'
-    $('#person').css('zIndex', -2)
 
 random_click = ->
   if not window.on_mozaic
@@ -118,7 +162,6 @@ $ ->
   if $("#trigger-facebook").length
     setTimeout(trigger_facebook_share, 2000)
 
-  setInterval(hide_person_div, 1007)
   window.random_timeout = setTimeout(random_click, 1000)
 
   $('#squares').on('mouseenter', ->
@@ -131,5 +174,10 @@ $ ->
     clearTimeout(window.enter_timeout)
     clearTimeout(window.random_timeout)
 
-    window.random_timeout = setTimeout(random_click, 3000)
+    window.random_timeout = setTimeout(random_click, 2000)
   )
+
+  canvas  = document.getElementById('canvas');
+  window.context = canvas.getContext('2d');
+  window.context.lineWidth   = 1
+  window.context.strokeStyle = '#555555'

@@ -120,6 +120,8 @@
 <!-- grid coordinates are inverted because of float:left -->
 <div id="mozaic">
   <img src="/pictures/mozaic.jpg">
+  <canvas id="canvas" height="615" width="750">
+  </canvas>
   <div id="squares">
     <% users = User.published.order('position ASC').all %>
     <% pos = 0 %>

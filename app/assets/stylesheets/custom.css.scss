@@ -116,6 +116,7 @@ p.lead.remaining {
   #squares {
     position:absolute;
     top: 0px;
+    z-index: 2;
 
     div {
       width:15px;
@@ -123,6 +124,12 @@ p.lead.remaining {
       float:left;
     }
   }
+}
+
+canvas {
+  position:absolute;
+  left: 0px;
+  top: 0px;
 }
 
 #person {
