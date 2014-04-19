@@ -48,4 +48,37 @@ namespace :deploy do
       execute :sudo, "ln -s #{deploy_to}/current/config/nginx.conf /etc/nginx/sites-enabled/#{fetch(:application)};true"
     end
   end
+
+  # CLONE PRODUCTION TO DEVELOPMENT : "cap production deploy:clone_to_development"
+  task :clone_to_development do
+    on roles(:app) do
+      dev_config  = YAML::load(File.read('config/database.yml'))['development']
+      prod_config = YAML::load(File.read('config/database.yml'))['production']
+
+      execute "mysqldump -u #{prod_config["username"]} -p#{prod_config["password"]} #{prod_config["database"]} > /tmp/dump.sql"
+
+      run_locally do
+        execute "scp deploy@2015citoyens.be:/tmp/dump.sql /tmp/dump.sql"
+        passwd_option = dev_config['password'].nil? ? '' : "-p#{dev_config['password']}"
+        execute "mysql -u #{dev_config['username']} #{passwd_option} #{dev_config['database']} < /tmp/dump.sql"
+      end
+
+      execute "cd #{deploy_to}/shared/public && tar -jcf pictures.tar.bz2 pictures"
+
+      run_locally do
+        execute "scp deploy@2015citoyens.be:#{deploy_to}/shared/public/pictures.tar.bz2 public"
+      end
+
+      execute "rm #{deploy_to}/shared/public/pictures.tar.bz2"
+
+      run_locally do
+        execute "rm -rf public/pictures"
+        execute "mkdir public/pictures"
+        execute "touch public/pictures/.keep"
+        execute "cd public && tar -jxf pictures.tar.bz2 && rm pictures.tar.bz2"
+      end
+    end
+  end
 end
+
+

@@ -5,31 +5,41 @@ body {
 .starter-template {
   position:relative;
   padding: 40px 15px;
+  padding-top: 0px;
   text-align: center;
 }
 
 .facebook {
   position:absolute;
   right:0px;
-  top:0px;
+  top:-20px;
 }
 
 .twitter {
   position: absolute;
   right: -22px;
-  top: 26px;
+  top: 6px;
 }
 
 .published {
   background-color: rgb(213, 253, 213);
   padding: 10px;
   font-size:18px;
+  margin-bottom: 16px;
 }
 
 p.lead {
   a {
     color: rgb(51, 51, 51);
   }
+}
+
+.subscription-link {
+
+}
+
+.subscription {
+  display: none;
 }
 
 .actions {
@@ -80,10 +90,11 @@ p.lead {
 
 #mozaic {
   position:relative;
+  margin:auto;
+  margin-top: 24px;
   height:820px;
   width:1000px;
   background-color:black;
-  margin:auto;
 
   #squares {
     position:absolute;

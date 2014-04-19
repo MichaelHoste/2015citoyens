@@ -67,5 +67,15 @@ $ ->
     trigger_facebook_share()
   )
 
+  $('.fb-join').on('click', ->
+    $('.subscription-link').hide()
+    $('.subscription').show()
+    false
+  )
+
+  if $('#current-user').length
+    $('.subscription-link').hide()
+    $('.subscription').show()
+
   if $("#trigger-facebook").length
     setTimeout(trigger_facebook_share, 2000)
