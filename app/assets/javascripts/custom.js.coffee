@@ -64,6 +64,7 @@ mouse_enter = (square) ->
   square.css('border', '1px solid #AAAAAA')
 
   if square.data('picture') != ""
+    $('#person img').attr('src', '') # don't display previous image during loading of new image
     $('#person img').attr('src', square.data('picture'))
     align_person(square)
     $('#person .description .content').html(square.data('text'))
@@ -100,8 +101,9 @@ random_click = ->
     random  = Math.round(Math.random()*total)
     random_element = squares.eq(random)
     mouse_enter(random_element)
-    window.leave_timeout = setTimeout((-> mouse_leave(random_element)), 4000)
-    window.enter_timeout = setTimeout(random_click, 5000)
+    time = 1500 + 7000 / 200 * random_element.data('text').length
+    window.leave_timeout = setTimeout((-> mouse_leave(random_element)), time)
+    window.enter_timeout = setTimeout(random_click, time+1000)
 
 $ ->
   bind_fb_connect()
