@@ -131,5 +131,5 @@ $ ->
     clearTimeout(window.enter_timeout)
     clearTimeout(window.random_timeout)
 
-    window.random_timeout = setTimeout(random_click, 1000)
+    window.random_timeout = setTimeout(random_click, 3000)
   )
