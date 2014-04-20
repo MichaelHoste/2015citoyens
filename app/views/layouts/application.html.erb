@@ -27,9 +27,9 @@
     <meta property="og:description" content="Une mosaïque de 2015 citoyens concernés par Mons 2015" />
     <meta property="og:image"       content="http://2015citoyens.be/pictures/mozaic-<%= User.published.count %>.jpg" />
 
-    <%# if flash[:notice] %>
-    <%= render 'shared/facebook_conversion_pixel' %>
-    <%# end %>
+    <% if flash[:notice] %>
+      <%= render 'shared/facebook_conversion_pixel' %>
+    <% end %>
 
     <%= render 'shared/analytics' %>
   </head>
