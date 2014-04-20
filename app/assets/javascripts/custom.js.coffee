@@ -181,3 +181,5 @@ $ ->
   window.context = canvas.getContext('2d');
   window.context.lineWidth   = 1
   window.context.strokeStyle = '#555555'
+
+  trigger_subscription()
